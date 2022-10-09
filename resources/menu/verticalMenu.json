@@ -1,0 +1,49 @@
+{
+  "menu": [
+    {
+      "url": "/",
+      "name": "Dashboard",
+      "icon": "menu-icon tf-icons bx bx-home-circle",
+      "slug": "dashboard-analytics"
+    },
+    {
+      "name": "inicie",
+      "icon": "menu-icon tf-icons bx bx-layout",
+      "slug": "layouts",
+      "submenu": [
+        {
+          "url": "/layouts/without-menu",
+          "name": "Without menu",
+          "slug": "layouts-without-menu"
+        }
+      ]
+    },
+    {
+      "menuHeader": "Acciones voluntarios"
+    },
+    {
+      "name": "Voluntarios",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "voluntarios.index",
+      "submenu": [
+        {
+          "url": "voluntarios/",
+          "name": "Lista",
+          "slug": "voluntarios.index"
+        }
+      ]
+    },
+    {
+      "name": "Observaciones",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "observaciones.index",
+      "submenu": [
+        {
+          "url": "observaciones/",
+          "name": "Lista",
+          "slug": "observaciones.index"
+        }
+      ]
+    }
+  ]
+}
