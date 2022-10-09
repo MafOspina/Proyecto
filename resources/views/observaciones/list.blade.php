@@ -7,6 +7,7 @@
     <h1>Observaciones
         <a type="button" class="btn btn-outline-dark" href="{{ route('observaciones.create')}}"><i class="fa fa-plus"></i>Agregar Observación</a>
     </h1>
+
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -49,7 +50,7 @@
             </tbody>
         </table>
     </div>
-    
+
     <li class="list-group-item list-group-item-primary"><a href="../index">Inicio</a></li>
     <script>
         console.log("${cliented}");
