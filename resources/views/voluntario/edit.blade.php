@@ -40,15 +40,15 @@
 
             <div class="form-group">
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio1" value="TI" {{ old('tipoDoc') == 'TI' ? 'checked':'' }}  >
+                    <input class="form-check-input" type="radio" name="tipoDoc" id="tipoDoc" value="TI" {{ $voluntario->tipoDoc == 'TI' ? 'checked' : '' }}>
                     <label class="form-check-label" for="inlineRadio1">TI</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio2" value="CC" {{ old('tipoDoc') == 'CC' ? 'checked':'' }}  >
+                    <input class="form-check-input" type="radio" name="tipoDoc" id="tipoDoc" value="CC"{{ $voluntario->tipoDoc == 'CC' ? 'checked' : '' }} >
                     <label class="form-check-label" for="inlineRadio2">CC</label>
                   </div>
                   <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio3" value="CE" {{ old('tipoDoc') == 'CE' ? 'checked':'' }} >
+                    <input class="form-check-input" type="radio" name="tipoDoc" id="tipoDoc" value="CE" {{ $voluntario->tipoDoc == 'CE'? 'checked' : '' }} >
                     <label class="form-check-label" for="inlineRadio3">CE</label>
                 </div>
                     <div class="form-text text-danger">{{ $errors->first('tipoDoc') }}</div>
