@@ -3,6 +3,9 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\VoluntarioController;
 use App\Http\Controllers\ObservacionesController;
+use App\Http\Controllers\UsuariosController;
+use App\Http\Controllers\RecursosController;
+use App\Http\Controllers\DetalleRecursosController;
 
 
 /*
@@ -25,6 +28,11 @@ Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboar
 // crud - voluntarios - observaciones
 Route::resource('voluntarios' , VoluntarioController::class );
 Route::resource('observaciones' , ObservacionesController::class );
+//Crud - usuarios -recursos - detalle recursos
+Route::resource('usuarios' , UsuariosController::class );
+Route::resource('recursos' , RecursosController::class );
+Route::resource('detallerecursos' , DetalleRecursosController::class );
+
 
 
 // layout
