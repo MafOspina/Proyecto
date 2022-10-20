@@ -6,6 +6,8 @@ use App\Http\Controllers\ObservacionesController;
 use App\Http\Controllers\UsuariosController;
 use App\Http\Controllers\RecursosController;
 use App\Http\Controllers\DetalleRecursosController;
+use App\Http\Controllers\TerrenoController;
+use App\Http\Controllers\EmpresaController;
 
 
 /*
@@ -32,6 +34,8 @@ Route::resource('observaciones' , ObservacionesController::class );
 Route::resource('usuarios' , UsuariosController::class );
 Route::resource('recursos' , RecursosController::class );
 Route::resource('detallerecursos' , DetalleRecursosController::class );
+Route::resource('terrenos', TerrenoController::class );
+Route::resource('empresas', EmpresaController::class );
 
 
 

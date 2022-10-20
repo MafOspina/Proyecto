@@ -80,6 +80,42 @@
           "slug": "detallerecursos.index"
         }
       ]
+    },
+    {
+      "name": "Terrenos",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "terrenos.index",
+      "submenu": [
+        {
+          "url": "terrenos/",
+          "name": "Lista",
+          "slug": "terrenos.index"
+        }
+      ]
+    },
+    {
+      "name": "Empresas",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "empresas.index",
+      "submenu": [
+        {
+          "url": "empresas/",
+          "name": "Lista",
+          "slug": "empresas.index"
+        }
+      ]
+    },
+    {
+      "name": "Evento",
+      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "slug": "eventos.index",
+      "submenu": [
+        {
+          "url": "terrenos/",
+          "name": "Lista",
+          "slug": "terrenos.index"
+        }
+      ]
     }
   ]
 }
