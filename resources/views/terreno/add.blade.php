@@ -1,47 +1,89 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js"></script>
-    <title>Agregar nuevo terreno</title>
-</head>
-<body>
-    <center>
-<form method="post" action="{{ route('terrenos.store') }}" enctype="multipart/form-data">
-@csrf
-        <label>Nombre:</label><br>
-        <input type="text" name="nomTer" value="{{ old('nomTer') }}"><br>
-        <span>{{ $errors->first('nomTer') }}</span><br>
-        
-        <label>Ubicación:</label><br>
-        <input type="text" name="ciudadTer" value="{{ old('nomTer') }}"><br>
-        <span>{{ $errors->first('ciudadTer') }}</span><br>
-        
-        <label>Tipo Terreno:</label><br>
-        <input type="text" name="tipTer" value="{{ old('nomTer') }}"><br>
-        <span>{{ $errors->first('tipTer') }}</span>
-            
-        <label>Descripción:</label><br>
-        <textarea name="descTer" value="{{ old('nomTer') }}"></textarea><br>
-        <span>{{ $errors->first('descTer') }}</span><br>
-        
-        <label>Extensión(Ha):</label><br>
-        <input type="number" name="extensionTer"><br>
-        <span>{{ $errors->first('extensionTer') }}</span><br>
-        
-        <label>Terreno Disponible(%):</label><br>
-        <input type="number" name="terDispTer" min="1" max="100" value="100"><br>
-        <span>{{ $errors->first('terDispTer') }}</span><br>
+@extends('layouts/contentNavbarLayout')
 
-        <select name="estTer">
-            <option value="1">Habilitado</option>
-            <option value="0">Inactivo</option>
-        </select><br>
-        <button type="submit" value="Agregar" name="accion">Agregar</button>
-    </form>
-    </center>
-</body>
-</html>
+@section('title', 'Voluntarios')
+
+@section('content')
+
+<div class="row">
+  <div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary ">Agregar terreno</h4>
+      </div>
+      <div class="card-body">
+
+        <form method="post" action="{{ route('terrenos.store') }}" enctype="multipart/form-data">
+          @csrf
+          <div class="mb-3">
+            <label class="form-label" for="nomTer">Nombre</label>
+            <div class="input-group input-group-merge">
+              <span id="nomTer" class="input-group-text"><i class='bx bxs-tree'></i></span>
+              <input type="text" class="form-control" id="nomTer" name="nomTer" value="{{ old('nomTer') }}" />
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('nomTer') }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="ciudadTer">Ubicación</label>
+            <div class="input-group input-group-merge">
+              <span id="ciudadTer" class="input-group-text"><i class='bx bx-map-pin'></i></span>
+              <input type="text" class="form-control" id="ciudadTer" name="ciudadTer" value="{{ old('ciudadTer') }}" />
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('ciudadTer') }}</div>
+          </div>
+
+
+          <div class="mb-3">
+            <label class="form-label" for="descTer">Descripción</label>
+            <div class="input-group input-group-merge">
+              <span id="descTer" class="input-group-text"><i class='bx bx-detail'></i></span>
+              <textarea  class="form-control" name="descTer" rows="3"> {{ Request::old('descTer') }}</textarea>
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('descTer') }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="tipTer">Tipo de terreno</label>
+            <div class="input-group input-group-merge">
+              <span id="tipTer" class="input-group-text"><i class='bx bx-list-minus'></i></span>
+              <input type="text" class="form-control" id="tipTer" name="tipTer" value="{{ old('tipTer') }}" />
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('tipTer') }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="extensionTer">Extensión(Ha)</label>
+            <div class="input-group input-group-merge">
+              <span id="extensionTer" class="input-group-text"><i class='bx bxs-grid'></i></span>
+              <input type="number" class="form-control" id="extensionTer" name="extensionTer" value="{{ old('extensionTer') }}" />
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('extensionTer') }}</div>
+          </div>
+
+
+          <div class="mb-3">
+            <label class="form-label" for="terDispTer">Terreno Disponible(%)</label>
+            <div class="input-group input-group-merge">
+              <span id="terDispTer" class="input-group-text"><i class='bx bx-pie-chart-alt-2'></i></span>
+              <input type="number" class="form-control" id="terDispTer" name="terDispTer" min="1" max="100" value="100" value="{{ old('terDispTer') }}" />
+            </div>
+              <div class="form-text text-danger">{{ $errors->first('terDispTer') }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="estTer">Estado</label>
+            <select class="form-select" name="estTer" id="bs-validation-country">
+                <option value="1" {{ old('estTer') == '1' ? 'selected' : '' }}>Habilitado</option>
+                <option value="0" {{ old('estTer') == '0' ? 'selected' : '' }}>Inhabilitado</option>
+              </select>
+              <div class="form-text text-danger">{{ $errors->first('estTer') }}</div>
+            </div> <br>
+
+            <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
+
+@endsection

@@ -3,8 +3,14 @@
 @section('title', 'DetalleRecursos')
 
 @section('content')
-    <div class="container-fluid">
-        <h1>Editar Detalle Recurso</h1>
+
+<div class="row">
+  <div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary ">Agregar detalle recurso</h4>
+      </div>
+      <div class="card-body">
 
         <form method="POST" action="{{ route('detallerecursos.update',  $detallerecurso ->id ) }}" :recurso="$detallerecurso" style="width: 35rem;" class="mx-auto">
 
@@ -27,32 +33,10 @@
                 <div class="form-text text-danger">{{ $errors->first('recurso_id') }}</div>
             </div>
             <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
+          </form>
+        </div>
+      </div>
     </div>
+  </div>
 
-
-    
-    <script>
-       console.log("${cliented}");
-        var datat = document.querySelector("#table");
-        var dataTable = new DataTable("#table", {
-            perPage: 10,
-            labels: {
-                placeholder: "Busca por un campo...",
-                perPage: "{select} registros por página",
-                noRows: "No se encontraron registros",
-                info: "Mostrando {start} a {end} de {rows} registros",
-            }
-        });
-
-        <li class="list-group-item list-group-item-primary"><a href="index">Agregar Detalle Recurso</a></li>
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-        crossorigin="anonymous"></script>
-
-
-
-@endsection
-
+  @endsection
