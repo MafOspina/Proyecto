@@ -4,84 +4,102 @@
 
 @section('content')
 
-    <div class="container-fluid">
-        <h1>Formulario Usuario</h1>
-        <h1>Agregar</h1>
+<div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary ">Agregar usuario</h4>
+      </div>
+      <div class="card-body">
+      <div class="row">
+        <div class="col">
+
         <form method="POST" action="{{ route('usuarios.store') }}" style="width: 35rem;" class="mx-auto">
-
             @csrf
-
-            <div class="col-md-10">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
+            <div class="mb-3">
+              <label class="form-label" for="nombre">Nombre</label>
+              <div class="input-group input-group-merge">
+                <span id="nombre" class="input-group-text"><i class="bx bx-user"></i></span>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" aria-describedby="nombre" />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('nombre') }}</div>
             </div>
-            <div class="col-md-10">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}">
+
+
+            <div class="mb-3">
+              <label class="form-label" for="apellido">Apellido</label>
+              <div class="input-group input-group-merge">
+                <span id="apellido" class="input-group-text"><i class="bx bx-user"></i></span>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}"  />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('apellido') }}</div>
-            <div class="col-md-10">
-                <label for="tipo_doc">Tipo Documento</label>
-                <select class="form-control" id="tipo_doc" name="tipo_doc">
-                    <option value="CC">CEDULA DE CIUDADANIA</option>
-                    <option value="TI">TARJETA DE IDENTIDAD</option>
-                    <option value="CE">CEDULA DE EXTRANGERIA</option>
-                </select>
-                <div class="form-text text-danger">{{ $errors->first('tipo_doc') }}</div>
             </div>
-            <div class="col-md-10">
-                <label for="num_doc">Número de documento</label>
-                <input type="text" class="form-control" id="num_doc" name="num_doc" value="{{ old('num_doc') }}">
+
+
+            <div class="mb-3">
+              <label class="form-label" for="num_doc">Número de documento</label>
+              <div class="input-group input-group-merge">
+                <span id="num_doc" class="input-group-text"><i class="bx bxs-user-detail"></i></span>
+                <input type="number" class="form-control" id="num_doc" name="num_doc" value="{{ old('num_doc') }}"  />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('num_doc') }}</div>
             </div>
-            <div class="col-md-10">
-                <label for="telefono">Correo</label>
-                <input type="text" class="form-control" id="correo" name="correo" value="{{ old('correo') }}">
-                <div class="form-text text-danger">{{ $errors->first('correo') }}</div>
+
+            <div class="mb-3 form-group">
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tipo_doc" id="inlineRadio1" value="TI" {{ old('tipo_doc') == 'TI' ? 'checked':'' }}  >
+                  <label class="form-check-label" for="inlineRadio1">TI</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tipo_doc" id="inlineRadio2" value="CC" {{ old('tipo_doc') == 'CC' ? 'checked':'' }}  >
+                  <label class="form-check-label" for="inlineRadio2">CC</label>
+              </div>
+              <div class="form-check form-check-inline">
+                  <input class="form-check-input" type="radio" name="tipo_doc" id="inlineRadio3" value="CE" {{ old('tipo_doc') == 'CE' ? 'checked':'' }} >
+                  <label class="form-check-label" for="inlineRadio3">CE</label>
+              </div>
+                  <div class="form-text text-danger">{{ $errors->first('tipo_doc') }}</div>
+          </div>
+        </div>
+
+        <div class="col">
+          <div class="mb-3">
+            <label class="form-label" for="correo">Correo</label>
+            <div class="input-group input-group-merge">
+              <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+              <input type="text" for="correo" class="form-control" id="correo" name="correo" value="{{ old('correo') }}"/>
+              <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
             </div>
-            <div class="col-md-10">
-                <label for="contrasena">Contraseña</label>
-                <input type="password" class="form-control" id="contrasena" name="contrasena" value="{{ old('contrasena') }}">
-                <div class="form-text text-danger">{{ $errors->first('contrasena') }}</div>
+            <div class="form-text text-danger">{{ $errors->first('correo') }}</div>
+          </div>
+
+          <div class="mb-3 form-password-toggle">
+            <label class="form-label" for="contrasena">Contraseña</label>
+            <div class="input-group input-group-merge">
+              <input type="password" id="contrasena" class="form-control" name="contrasena" value="{{ old('contrasena') }}"/>
+              <span class="input-group-text cursor-pointer" id="contrasena"><i class="bx bx-hide"></i></span>
             </div>
-            <div class="col-md-10">
-                <label for="tipo_user">Tipo Usuario</label>
-                <select class="form-control" id="tipo_user" name="tipo_user">
-                    <option value="1">ADMINISTRADOR DEL SISTEMA</option>
-                    <option value="2">ADMINISTRACION</option>
-                    <option value="3">LOGISTICA</option>
-                </select>
-                <div class="form-text text-danger">{{ $errors->first('tipo_user') }}</div>
-            </div>
-            <div class="col-md-10">
-                <label for="estado">ESTADO</label>
-                <input type="checkbox" id="estado" name="estado">
-            </div>
-            <button type="submit" class="btn btn-primary">Guardar</button>
-        </form>
+            <div class="form-text text-danger">{{ $errors->first('contrasena') }}</div>
+          </div>
+
+          <div class="mb-3">
+            <label class="form-label" for="tipo_user">Tipo de usuario</label>
+            <select class="form-select" name="tipo_user" id="tipo_user" >
+                <option value="" selected>Seleccione</option>
+                <option value="1" {{ old('tipo_user') == '1' ? 'selected' : '' }}>Administrador del sistema</option>
+                <option value="2" {{ old('tipo_user') == '2' ? 'selected' : '' }}>Administración</option>
+                <option value="3" {{ old('tipo_user') == '3' ? 'selected' : '' }}>Logística</option>
+              </select>
+              <div class="form-text text-danger">{{ $errors->first('tipo_user') }}</div>
+          </div>
+      </div>
     </div>
 
-
-    <script>
-       console.log("${cliented}");
-        var datat = document.querySelector("#table");
-        var dataTable = new DataTable("#table", {
-            perPage: 10,
-            labels: {
-                placeholder: "Busca por un campo...",
-                perPage: "{select} registros por página",
-                noRows: "No se encontraron registros",
-                info: "Mostrando {start} a {end} de {rows} registros",
-            }
-        });
-
-        <li class="list-group-item list-group-item-primary"><a href="index">Agregar Usuarios</a></li>
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-        crossorigin="anonymous"></script>
-
-
+    <button type="submit" class="btn btn-primary">Guardar</button>
+        </form>
+      </div>
+    </div>
+  </div>
+</div>
 
 @endsection
+

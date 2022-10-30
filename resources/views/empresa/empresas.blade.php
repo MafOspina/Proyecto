@@ -25,7 +25,7 @@
                             <th>Dirección</th>
                             <th>Estado</th>
                             <th colspan="2">Acciones</th>
-                           </tr> 
+                           </tr>
                         </thead>
                         <tbody>
                            @foreach($empresas as $e)
@@ -36,37 +36,24 @@
                             <td>{{ $e -> telEmp }}</td>
                             <td>{{ $e ->  dirreEmp }}</td>
                             <td>{{ $e -> estEmp }}</td>
-                    
-                            <td><a href="{{ route('empresas.edit', $e ) }}">Modificar</a></td>
-                            
-                            <td><form action="{{ route('empresas.destroy', $e ) }}" method="post">
-                                @csrf
-                                @method('DELETE')
-                                <button type="submit" onclick="return confirm('¿Estás seguro que quieres eliminar esta empresa?');">Eliminar</button>
-                            </form></td>
+
+                            <td>
+                              <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                                <a role="button" class="btn btn-outline-warning btn-sm" href="{{  route('empresas.edit', $e ) }}"
+                                onclick="return confirm('Estás seguro que quieres editar este usuario?');">
+                                <i class="bi bi-pencil"></i></a>
+
+                                <form action="{{ route('empresas.destroy', $e) }}" method="post">
+                                  @csrf
+                                  @method('DELETE')
+                                  <button class="btn btn-outline-danger btn-sm" type="submit" onclick="return confirm('Estás seguro que quieres eliminar este usuario?');"><i class="bi bi-trash"></i></button>
+                              </form>
+
+                              </div>
+                              
                            </tr>
-                           @endforeach 
+                           @endforeach
                         </tbody>
                     </table>
                 </div>
-<li class="list-group-item list-group-item-primary"><a href="../index">Inicio</a></li>
-    <script>
-        console.log("${cliented}");
-        var datat = document.querySelector("#table");
-        var dataTable = new DataTable("#table", {
-            perPage: 10,
-            labels: {
-                placeholder: "Busca por un campo...",
-                perPage: "{select} registros por página",
-                noRows: "No se encontraron registros",
-                info: "Mostrando {start} a {end} de {rows} registros",
-            }
-        });
-
-        <li class="list-group-item list-group-item-primary"><a href="index">Agregar Voluntario</a></li>
-    </script>
-
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.1/dist/js/bootstrap.bundle.min.js"
-        integrity="sha384-/bQdsTh/da6pkI1MST/rWKFNjaCP5gBSY4sEBT38Q/9RBh9AH40zEOg7Hlq2THRZ"
-        crossorigin="anonymous"></script>
 @endsection

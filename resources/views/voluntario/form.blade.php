@@ -1,73 +1,88 @@
-<!DOCTYPE html>
-<html lang="es">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Document</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
-    <link rel="stylesheet" type="text/css" th:href="@{/css/styles.css}">
-    <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <link rel="stylesheet" type="text/css" href="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.css%22%3E">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js%22%3E"></script>
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css%22%3E">
+@extends('layouts/contentNavbarLayout')
 
-</head>
-<body>
-    <div class="container-fluid">
-        <h1>Formulario Voluntario</h1>
-        <h1>Agregar</h1>
-        <form method="POST" action="{{ route('voluntarios.store') }}" style="width: 35rem;" class="mx-auto">
+@section('title', 'Voluntarios')
 
+@section('content')
+
+<div class="row">
+  <div class="col-xl">
+    <div class="card mb-4">
+      <div class="card-header d-flex justify-content-between align-items-center">
+        <h4 class="mb-0 text-primary ">Agregar voluntario</h4>
+      </div>
+      <div class="card-body">
+
+        <form method="POST" action="{{ route('voluntarios.store') }}">
             @csrf
-
-            <div class="col-md-10">
-                <label for="nombre">Nombre</label>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}">
+            <div class="mb-3">
+              <label class="form-label" for="nombre">Nombre</label>
+              <div class="input-group input-group-merge">
+                <span id="nombre" class="input-group-text"><i class="bx bx-user"></i></span>
+                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}" aria-describedby="nombre" />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('nombre') }}</div>
             </div>
-            <div class="col-md-10">
-                <label for="apellido">Apellido</label>
-                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}">
+
+
+            <div class="mb-3">
+              <label class="form-label" for="apellido">Apellido</label>
+              <div class="input-group input-group-merge">
+                <span id="apellido" class="input-group-text"><i class="bx bx-user"></i></span>
+                <input type="text" class="form-control" id="apellido" name="apellido" value="{{ old('apellido') }}"  />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('apellido') }}</div>
-            <div class="col-md-10">
-                <label for="Nomdoc">Número de documento</label>
-                <input type="text" class="form-control" id="numDoc" name="numDoc" value="{{ old('numDoc') }}">
+            </div>
+
+
+            <div class="mb-3">
+              <label class="form-label" for="Nomdoc">Número de documento</label>
+              <div class="input-group input-group-merge">
+                <span id="Nomdoc" class="input-group-text"><i class="bx bxs-user-detail"></i></span>
+                <input type="number" class="form-control" id="numDoc" name="numDoc" value="{{ old('numDoc') }}"  />
+              </div>
                 <div class="form-text text-danger">{{ $errors->first('numDoc') }}</div>
             </div>
 
-            <div class="form-group">
+            <div class="mb-3 form-group">
                 <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio1" value="TI" {{ old('tipoDoc') == 'TI' ? 'checked':'' }}  >
                     <label class="form-check-label" for="inlineRadio1">TI</label>
-                  </div>
-                  <div class="form-check form-check-inline">
+                </div>
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio2" value="CC" {{ old('tipoDoc') == 'CC' ? 'checked':'' }}  >
                     <label class="form-check-label" for="inlineRadio2">CC</label>
-                  </div>
-                  <div class="form-check form-check-inline">
+                </div>
+                <div class="form-check form-check-inline">
                     <input class="form-check-input" type="radio" name="tipoDoc" id="inlineRadio3" value="CE" {{ old('tipoDoc') == 'CE' ? 'checked':'' }} >
                     <label class="form-check-label" for="inlineRadio3">CE</label>
                 </div>
                     <div class="form-text text-danger">{{ $errors->first('tipoDoc') }}</div>
             </div>
 
-             <div class="col-md-10">
-                <label for="telefono">Correo</label>
-                <input type="text" class="form-control" id="correo" name="correo" value="{{ old('correo') }}">
-                <div class="form-text text-danger">{{ $errors->first('correo') }}</div>
+            <div class="mb-3">
+              <label class="form-label" for="correo">Correo</label>
+              <div class="input-group input-group-merge">
+                <span class="input-group-text"><i class="bx bx-envelope"></i></span>
+                <input type="text" for="correo" class="form-control" id="correo" name="correo" value="{{ old('correo') }}"/>
+                <span id="basic-icon-default-email2" class="input-group-text">@example.com</span>
+              </div>
+              <div class="form-text text-danger">{{ $errors->first('correo') }}</div>
             </div>
 
-            <div class="col-md-10">
-                <label for="telefono">Teléfono</label>
-                <input type="number" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}">
-                <div class="form-text text-danger">{{ $errors->first('telefono') }}</div>
+            <div class="mb-3">
+              <label class="form-label" for="telefono">Teléfono</label>
+              <div class="input-group input-group-merge">
+                <span class="input-group-text"><i class="bx bx-phone"></i></span>
+                <input type="number" for="telefono" class="form-control" id="telefono" name="telefono" value="{{ old('telefono') }}"/>
+              </div>
+              <div class="form-text text-danger">{{ $errors->first('telefono') }}</div>
             </div>
-
 
                 <button type="submit" class="btn btn-primary">Guardar</button>
-            </div>
-        </form>
+          </form>
+      </div>
     </div>
-</body>
-</html>
+  </div>
+</div>
+
+@endsection
