@@ -44,7 +44,7 @@ class ObservacionesController extends Controller
 
         Observaciones::create($request->all());
 
-        return redirect()->route('observaciones.index') -> with('success','Observción creado con éxito');
+        return redirect()->route('observaciones.index') -> with('success','Observación creado con éxito');
     }
 
     /**
