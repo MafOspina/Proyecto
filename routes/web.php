@@ -21,10 +21,14 @@ use App\Http\Controllers\EmpresaController;
 |
 */
 
+Route::get('/', function () {
+    return view('welcome');
+});
+
 $controller_path = 'App\Http\Controllers';
 
 // Main Page Route
-Route::get('/', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
+Route::get('/dashboard', $controller_path . '\dashboard\Analytics@index')->name('dashboard-analytics');
 
 
 // crud - voluntarios - observaciones
