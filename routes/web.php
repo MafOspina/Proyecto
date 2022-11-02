@@ -8,6 +8,7 @@ use App\Http\Controllers\RecursosController;
 use App\Http\Controllers\DetalleRecursosController;
 use App\Http\Controllers\TerrenoController;
 use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\EventoController;
 
 
 /*
@@ -40,6 +41,7 @@ Route::resource('recursos' , RecursosController::class );
 Route::resource('detallerecursos' , DetalleRecursosController::class );
 Route::resource('terrenos', TerrenoController::class );
 Route::resource('empresas', EmpresaController::class );
+Route::resource('eventos', EventoController::class);
 
 
 

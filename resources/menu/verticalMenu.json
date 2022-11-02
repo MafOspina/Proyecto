@@ -111,9 +111,9 @@
       "slug": "eventos.index",
       "submenu": [
         {
-          "url": "terrenos/",
+          "url": "eventos/",
           "name": "Lista",
-          "slug": "terrenos.index"
+          "slug": "eventos.index"
         }
       ]
     }

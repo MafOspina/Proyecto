@@ -10,4 +10,8 @@ class Terreno extends Model
     use HasFactory;
 
     protected $fillable = ['nomTer','ciudadTer','descTer','extensionTer','terDispTer','tipTer','estTer'];
+
+    public function eventos(){
+        return $this -> hasMany(Evento::class);
+    }
 }

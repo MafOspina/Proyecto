@@ -8,7 +8,7 @@ use Illuminate\Support\Facades\Validator;
 
 class TerrenoController extends Controller
 {
-    
+
     public function index()
     {
         $terrenos = Terreno::all();
@@ -28,8 +28,10 @@ class TerrenoController extends Controller
             "ciudadTer" => 'required|max:30',
             "descTer" => 'max:500',
             "extensionTer" => 'required',
+            "descTer" => 'required',
             "terDispTer" => 'required',
-            "tipTer" => 'required'
+            "tipTer" => 'required',
+            "estTer" => 'required'
         ]);
 
         Terreno::create($r->all());

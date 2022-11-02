@@ -6,11 +6,12 @@
         document.write(new Date().getFullYear())
 
       </script>
-      , made with ❤️ by <a href="{{ (!empty(config('variables.creatorUrl')) ? config('variables.creatorUrl') : '') }}" target="_blank" class="footer-link fw-bolder">{{ (!empty(config('variables.creatorName')) ? config('variables.creatorName') : '') }}</a>
+      Fundación Red de Árboles
     </div>
     <div>
-      
+
     </div>
   </div>
+
 </footer>
 <!--/ Footer-->
