@@ -17,5 +17,3 @@ INSERT INTO `terrenos` (`id`, `ciudadTer`, `descTer`, `estTer`, `extensionTer`, 
 (16, 'Valle del Cauca', 'En la ciudad de Cali se espera reforestar y recuperar el Cerro de Cristo Rey para que sea un atractivo turistico de conservación de fauna y flora. ', b'1', 36, 'Cali', 100, 'Montañoso'),
 (17, 'Antioquia', 'En Guarne, Antioquia plantamos árboles en un predio privado que por inciativa propia quiere recuperar la fauna y flora nativa', b'1', 35, 'Guarne', 100, 'Plano'),
 (18, 'Zipaquirá', 'Ubicado a 30 minutos de la cabecera municipal de Sibaté. Zona de amortiguación del Páramo de Sumapaz. Uno de los más importantes en términos de biodiversidad a nivel mundial, que cuenta con especies de plantas como; Aliso, Laurel de páramo y Mortiño.', b'1', 30, 'Páramo de Guerrero', 100, 'Montañoso');
-
-adsfsadf

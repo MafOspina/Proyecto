@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Terreno;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Http\Requests\StoreTerrenoRequest;
 
 class TerrenoController extends Controller
 {
@@ -21,18 +22,8 @@ class TerrenoController extends Controller
         return view('terreno.add');
     }
 
-    public function store(Request $r)
+    public function store(StoreTerrenoRequest $r)
     {
-        $r -> validate([
-            "nomTer" =>  'required|max:45',
-            "ciudadTer" => 'required|max:30',
-            "descTer" => 'max:500',
-            "extensionTer" => 'required',
-            "descTer" => 'required',
-            "terDispTer" => 'required',
-            "tipTer" => 'required',
-            "estTer" => 'required'
-        ]);
 
         Terreno::create($r->all());
 
@@ -50,16 +41,8 @@ class TerrenoController extends Controller
         return view('terreno.edit', compact('terreno'));
     }
 
-    public function update(Request $r, Terreno $terreno)
+    public function update(StoreTerrenoRequest $r, Terreno $terreno)
     {
-        $r -> validate([
-            "nomTer" =>  'required|max:45',
-            "ciudadTer" => 'required|max:30',
-            "descTer" => 'max:500',
-            "extensionTer" => 'required',
-            "terDispTer" => 'required',
-            "tipTer" => 'required'
-        ]);
 
         $terreno->update($r->all());
 

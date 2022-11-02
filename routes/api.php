@@ -29,7 +29,7 @@ class WelcomeController
     function login(Request $request)
     {
         $resp = $request->all();
-        $users = DB::select('SELECT * FROM usuario WHERE correo="' . $resp['email'] . '" and contrasena="' . $resp['password'] . '"');
+        $users = DB::select('SELECT * FROM usuarios WHERE correo="' . $resp['email'] . '" and contrasena="' . $resp['password'] . '"');
         // print_r($users);
         session_start();
         session(['rol' => $users[0]->tipo_user]);
