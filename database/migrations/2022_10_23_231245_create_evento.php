@@ -17,12 +17,12 @@ return new class extends Migration
             $table->id();
             $table->date('fechaEve');
             $table->time('horaIniEve');
-            $table->string('reporteEve',200);
+            $table->string('reporteEve',200)->nullable();
             $table->integer('numArbEve');
             $table->integer('tipEve');
             $table->integer('estEve');
             $table->foreignId('terreno_id')->constrained();
-
+            $table->foreignId('usuario_id')->constrained();
             $table->timestamps();
         });
     }

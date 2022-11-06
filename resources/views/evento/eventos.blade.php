@@ -3,13 +3,22 @@
 @section('title', 'Eventos')
 
 @section('content')
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script src="sweetalert2.all.min.js"></script>
 
         <h1>Eventos</h1>
         <a href="{{ route('eventos.create') }}"><i class="bi bi-plus-circle"></i>&nbsp;Agregar</a>
         @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
+        <script>
+            const Toast = Swal.mixin({ toast: true, position: 'bottom-end', showConfirmButton: false, timer: 3000, timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer)
+                toast.addEventListener('mouseleave', Swal.resumeTimer)
+            }
+            })
+
+            Toast.fire({ icon: 'success', title: '{{ $message }}' })
+        </script>
         @endif
 
         <hr class="my-5">
@@ -21,9 +30,10 @@
                             <th>Fecha</th>
                             <th>Terreno</th>
                             <th>Hora Inicio</th>
-                            <th>Reporte</th>
-                            <th>Numero de arboles</th>
+                            <!--<th>Reporte</th>-->
+                            <th>N° arboles</th>
                             <th>Tipo</th>
+                            <th>Logistico</th>
                             <th>Estado</th>
                             <th colspan="2">Acciones</th>
                            </tr> 
@@ -34,9 +44,10 @@
                             <td>{{ $e -> fechaEve }}</td>
                             <td>{{ $e -> Terreno -> nomTer }}</td>
                             <td>{{ $e -> horaIniEve }}</td>
-                            <td>{{ $e -> reporteEve }}</td>
+                            <!--<td>{{ $e -> reporteEve }}</td>-->
                             <td>{{ $e -> numArbEve }}</td>
                             <td>{{ $e -> tipEve }}</td>
+                            <td>{{ $e -> Usuario -> nombre }}</td>
                             <td>{{ $e -> estEve }}</td>
                             <td><a href="{{ route('eventos.edit', $e ) }}">Modificar</a></td>
                             

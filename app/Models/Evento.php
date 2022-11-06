@@ -9,9 +9,13 @@ class Evento extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['fechaEve','horaIniEve','reporteEve','numArbEve','tipEve','estEve','terreno_id'];
+    protected $fillable = ['fechaEve','horaIniEve','reporteEve','numArbEve','tipEve','estEve','terreno_id','usuario_id'];
 
     public function terreno(){
         return $this -> belongsTo(Terreno::class, 'terreno_id');
+    }
+
+    public function usuario(){
+        return $this -> belongsTo(Usuario::class, 'usuario_id');
     }
 }

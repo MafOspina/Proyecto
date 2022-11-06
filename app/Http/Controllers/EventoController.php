@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Evento;
 use App\Models\Terreno;
+use App\Models\Usuario;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
 
@@ -21,7 +22,13 @@ class EventoController extends Controller
     {
         $terrenos = Terreno::Orderby('nomTer','asc')->get();
 
-        return view('evento.add')->with('terrenos',$terrenos);
+        $logistico = Usuario::all();
+
+        $fecha = date('Y-m-d');
+        $fecha_meses = strtotime('+6 month',strtotime($fecha));
+        $fecha_meses = date('Y-m-d', $fecha_meses);
+
+        return view('evento.add')->with('terrenos',$terrenos)->with('logistico', $logistico)->with('now',$fecha)->with('sixmonths',$fecha_meses);
     }
 
     public function store(Request $r)
@@ -29,7 +36,6 @@ class EventoController extends Controller
         $r -> validate([
             "fechaEve" =>  'required',
             "horaIniEve" => 'required',
-            "reporteEve" => 'max:200',
             "numArbEve" => 'required|integer',
             "tipEve" => 'required',
             "terreno" => 'required'
@@ -38,11 +44,11 @@ class EventoController extends Controller
         Evento::create([
             'fechaEve' => $r -> fechaEve,
             'horaIniEve' => $r -> horaIniEve,
-            'reporteEve' => $r -> reporteEve,
             'numArbEve' => $r -> numArbEve,
             'tipEve' => $r -> tipEve,
-            'estEve' => $r -> estEve,
-            'terreno_id' => $r -> terreno
+            'estEve' => 0,
+            'terreno_id' => $r -> terreno,
+            'usuario_id' => $r -> usuario
         ]);
 
         return redirect()->route('eventos.index')->with('success','Evento asignado correctamente');

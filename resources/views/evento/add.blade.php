@@ -1,56 +1,94 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-gH2yIJqKdNHPEq0n4Mqa/HGKIhSkIHeL5AyhkYV8i59U5AR6csBvApHHNl/vI1Bx" crossorigin="anonymous">
-    <script type="text/javascript" src="https://cdn.jsdelivr.net/gh/mobius1/vanilla-Datatables@latest/vanilla-dataTables.min.js"></script>
-    <title>Agregar nuevo evento</title>
-</head>
+@extends('layouts/contentNavbarLayout')
+
+@section('title', 'Eventos')
+
+@section('content')
+<link rel="stylesheet" href="{{ asset('css/formadd.css') }}">
 <body>
-    <center>
-<form method="post" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
-@csrf
-        <label>fecha:</label><br>
-        <input type="date" name="fechaEve" value="{{ old('fechaEve') }}"><br>
-        <span>{{ $errors->first('fechaEve') }}</span><br>
-        
-        <label>Hora de inicio:</label><br>
-        <input type="time" name="horaIniEve" value="{{ old('horaIniEve') }}"><br>
-        <span>{{ $errors->first('horaIniEve') }}</span>
-            
-        <label>Reporte:</label><br>
-        <input type="" name="reporteEve" value="{{ old('reporteEve') }}"><br>
-        <span>{{ $errors->first('reporteEve') }}</span><br>
-        
-        <label>Número de Arboles:</label><br>
-        <input type="number" name="numArbEve" value="{{ old('numArbEve') }}"><br>
-        <span>{{ $errors->first('numArbEve') }}</span><br>
-        
-        <label>Tipo de Evento</label>
-            <select name="tipEve" >
-                <option value="1">Público</option>
-                <option value="2">Privado</option>
-                <option value="3">Empresarial</option>
-            </select>
-            <br>
-        <select name="estEve">
-            <option value="1">Habilitado</option>
-            <option value="0">Inactivo</option>
-        </select><br>
+    <div class="root">
+        <form method="post" class="form-register" action="{{ route('eventos.store') }}" enctype="multipart/form-data">
+        @csrf
+            <div class="form-register__header">
+                <ul class="progressbar">
+                    <li class="progressbar__option active">General</li>
+                    <li class="progressbar__option">Terreno</li>
+                    <li class="progressbar__option">Logistico</li>
+                </ul>
+            </div>
+            <div class="form-register__body">
+                <div class="step active" id="step-1">
+                    <div class="step__header">
+                        <h1 class="form-register__title">NUEVO  EVENTO</h1>
+                    </div>
+                    <div class="step__body">
+                        <label class="form-label" for="nomTer">Fecha</label>
+                        <input type="date" class="form-control" id="fecha" min="{{ $now }}" max="{{ $sixmonths }}" name="fechaEve" value="{{ old('fechaEve') }}">
+                            <!--<p id="error_date">El campo es obligatorio</p>-->
 
-        <label>Terreno:</label><br>
-        <select name="terreno">
-            <option value="">Elija el terreno</option>
-            @foreach($terrenos as $t)
-                <option value="{{ $t -> id }}" @select(old("terreno") == $t)>{{ $t -> nomTer }}</option>
-            @endforeach
-        </select><br>
-        <span>{{ $errors->first('terreno') }}</span><br>
+                        <label class="form-label" for="nomTer">Hora</label>
+                        <input type="time" class="form-control" id="hour" name="horaIniEve" value="{{ old('horaIniEve') }}">
+                            <!--<p class="error">El campo es obligatorio</p>-->
 
-        <button type="submit" value="Agregar" name="accion">Agregar</button>
-    </form>
-    </center>
+                        <label class="form-label" for="nomTer">Tipo de Evento</label>
+                        <select name="tipEve" class="form-select">
+                            <option value="1">Público</option>
+                            <option value="2">Privado</option>
+                            <option value="3">Empresarial</option>
+                        </select>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--next" data-to_step="2" data-step="1">Siguiente</button>
+                    </div>
+                </div>
+                <div class="step" id="step-2">
+                    <div class="step__header">
+                    <h1 class="form-register__title mb-0">NUEVO EVENTO</h1>
+                        <h2 class="step__title">Terrenos</h2>
+                    </div>
+                    <div class="step__body">
+                    <label>Terreno:</label><br>
+                        <select name="terreno" id="terreno" class="form-select"> 
+                            <option value="">Elija el terreno</option>
+                            @foreach($terrenos as $t)
+                                <option value="{{ $t -> id }}" @select(old("terreno") == $t)>{{ $t -> nomTer }}</option>
+                            @endforeach
+                        </select><br>
+                        <label>Número de Arboles:</label><br>
+                        <div class="input-group input-group-merge">
+                            <span class="input-group-text"><i class='bx bxs-tree'></i></span>
+                            <input type="number" class="form-control" name="numArbEve" id="numarb" value="{{ old('numArbEve') }}"><br>
+                        </div>
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--back" data-to_step="1" data-step="2">Regresar</button>
+                        <button type="button" class="step__button step__button--next" data-to_step="3" data-step="2">Siguiente</button>
+                    </div>
+                </div>
+                <div class="step" id="step-3">
+                    <div class="step__header">
+                    <h1 class="form-register__title mb-0">NUEVO EVENTO</h1>
+                        <h2 class="step__title">Encargado Logistico</h2>
+                    </div>
+                    <div class="step__body">
+                        <select name="usuario" id="logistico" class="form-select">
+                            <option value="">Elija el encargado de logistica</option>
+                            @foreach($logistico as $u)
+                                <option value="{{ $u -> id }}" @select(old("usuario") == $t)>{{ $u -> nombre }}</option>
+                            @endforeach
+                        </select><br>
+                        <!--<input type="text" placeholder="Dato x" class="step__input">
+                        <input type="text" placeholder="Dato x" class="step__input">
+                        <input type="text" placeholder="Dato x" class="step__input">-->
+                    </div>
+                    <div class="step__footer">
+                        <button type="button" class="step__button step__button--back" data-to_step="2" data-step="3">Regresar</button>
+                        <button type="submit" class="step__button" value="Agregar" name="accion">Agendar</button>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+    <script type="text/javascript" src="{{ asset('js/evento.js') }}"></script>
 </body>
-</html>
+@endsection
