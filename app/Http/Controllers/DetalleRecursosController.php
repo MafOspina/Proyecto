@@ -5,6 +5,8 @@ namespace App\Http\Controllers;
 use App\Models\DetalleRecurso;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use App\Models\Evento;
+use App\Models\Recurso;
 
 class DetalleRecursosController extends Controller
 {
@@ -40,13 +42,15 @@ class DetalleRecursosController extends Controller
     {
            $request->validate([
             "cantidad" => 'required',
-            "tipo_recurso" => 'required',
-            "recurso_id" => 'required'
         ]);
 
-        DetalleRecurso::create($request->all());
+        DetalleRecurso::create([
+            'evento_id' => $request -> evento,
+            'recurso_id' => $request -> recurso,
+            'cantidad' => $request -> cantidad
+        ]);
 
-        return redirect()->route('detallerecursos.index') ->  with('success','Detalle Recurso creado con éxito');
+        return redirect()->route('detallerecursos.show',$request -> evento) ->  with('success','Detalle Recurso creado con éxito');
     }
 
     /**
@@ -55,13 +59,17 @@ class DetalleRecursosController extends Controller
      * @param  \App\Models\DetalleRecurso  $detallerecurso
      * @return \Illuminate\Http\Response
      */
-    public function show(DetalleRecurso $detallerecurso)
+    public function show($id)
     {
-        //
+        $detallerecursos = DetalleRecurso::where('evento_id','=',$id)->get();
+        $id = Evento::find($id);
+        $recursos = Recurso::all();
+
+        return view('detallerecurso.list')->with('evento', $id)-> with('detallerecursos', $detallerecursos)->with('recursos',$recursos);
     }
 
     /**
-     * Show the form for editing the specified resource.
+     * Show the form for editing the specified resource.sx
      *
      * @param  \App\Models\DetalleRecurso  $detallerecurso
      * @return \Illuminate\Http\Response

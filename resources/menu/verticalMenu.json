@@ -70,18 +70,6 @@
       ]
     },
     {
-      "name": "Detalle Recursos",
-      "icon": "menu-icon tf-icons bx bx bx-dock-top",
-      "slug": "detallerecursos.index",
-      "submenu": [
-        {
-          "url": "detallerecursos/",
-          "name": "Lista",
-          "slug": "detallerecursos.index"
-        }
-      ]
-    },
-    {
       "name": "Terrenos",
       "icon": "menu-icon tf-icons bx bx bx-dock-top",
       "slug": "terrenos.index",

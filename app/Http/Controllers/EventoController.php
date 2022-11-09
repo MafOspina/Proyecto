@@ -12,7 +12,7 @@ class EventoController extends Controller
 {
     public function index()
     {
-        $eventos = Evento::all();
+        $eventos = Evento::Orderby('fechaEve', 'asc')->get();
 
         return view('evento.eventos') -> with('eventos', $eventos);
     }
@@ -20,7 +20,7 @@ class EventoController extends Controller
 
     public function create()
     {
-        $terrenos = Terreno::Orderby('nomTer','asc')->get();
+        $terrenos = Terreno::where('estTer','=','1')->Orderby('nomTer','asc')->get();
 
         $logistico = Usuario::all();
 

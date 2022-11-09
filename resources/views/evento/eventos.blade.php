@@ -31,11 +31,11 @@
                             <th>Terreno</th>
                             <th>Hora Inicio</th>
                             <!--<th>Reporte</th>-->
-                            <th>N° arboles</th>
+                            <!--<th>N° arboles</th>-->
                             <th>Tipo</th>
-                            <th>Logistico</th>
+                            <!--<th>Logistico</th>-->
                             <th>Estado</th>
-                            <th colspan="2">Acciones</th>
+                            <th colspan="3">Acciones</th>
                            </tr> 
                         </thead>
                         <tbody>
@@ -45,10 +45,11 @@
                             <td>{{ $e -> Terreno -> nomTer }}</td>
                             <td>{{ $e -> horaIniEve }}</td>
                             <!--<td>{{ $e -> reporteEve }}</td>-->
-                            <td>{{ $e -> numArbEve }}</td>
+                            <!--<td>{{ $e -> numArbEve }}</td>-->
                             <td>{{ $e -> tipEve }}</td>
-                            <td>{{ $e -> Usuario -> nombre }}</td>
+                            <!--<td>{{ $e -> Usuario -> nombre }}</td>-->
                             <td>{{ $e -> estEve }}</td>
+                            <td><button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#detalleEve{{ $e -> id}}">Detalles</button></td>
                             <td><a href="{{ route('eventos.edit', $e ) }}">Modificar</a></td>
                             
                             <td><form action="{{ route('eventos.destroy', $e ) }}" method="post">
@@ -57,6 +58,35 @@
                                 <button type="submit" onclick="return confirm('¿Estás seguro que quieres eliminar este evento?');">Eliminar</button>
                             </form></td>
                            </tr>
+
+                            <!-- Modal -->
+                            <div class="modal fade" id="detalleEve{{ $e -> id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                            <div class="modal-dialog" role="document">
+                                <div class="modal-content">
+                                <div class="modal-header">
+                                    <h5 class="modal-title" id="exampleModalLabel">Evento N° {{ $e -> id}}</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">
+                                    </button>
+                                </div>
+                                <div class="modal-body">
+                                    <b>Fecha:</b> {{ $e -> fechaEve}}<br>
+                                    <b>Terreno:</b>{{ $e -> Terreno -> nomTer }}<br>
+                                    <b>Hora:</b>{{ $e -> horaIniEve }}<br>
+                                    <b>N° Arboles:</b>{{ $e -> numArbEve}}<br>
+                                    <b>Encargado de Logistica:</b>{{ $e -> Usuario -> nombre }}<br>
+                                    <b>Estado:</b>{{ $e -> estEve}}<br>
+                                    
+                                </div>
+                                <div class="modal-footer">
+                                <button type="button" class="btn btn-primary">Voluntarios</button>
+
+                                <a href="{{ url('detallerecursos', $e -> id)}}" class="btn btn-primary">Recursos</a>
+
+                                <button type="button" class="btn btn-danger" data-bs-dismiss="modal">Close</button>
+                                </div>
+                                </div>
+                            </div>
+                            </div>
                            @endforeach 
                         </tbody>
                     </table>

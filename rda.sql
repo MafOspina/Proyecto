@@ -18,3 +18,11 @@ INSERT INTO `terrenos` (`id`, `ciudadTer`, `descTer`, `estTer`, `extensionTer`, 
 (17, 'Antioquia', 'En Guarne, Antioquia plantamos árboles en un predio privado que por inciativa propia quiere recuperar la fauna y flora nativa', b'1', 35, 'Guarne', 100, 'Plano'),
 (18, 'Zipaquirá', 'Ubicado a 30 minutos de la cabecera municipal de Sibaté. Zona de amortiguación del Páramo de Sumapaz. Uno de los más importantes en términos de biodiversidad a nivel mundial, que cuenta con especies de plantas como; Aliso, Laurel de páramo y Mortiño.', b'1', 30, 'Páramo de Guerrero', 100, 'Montañoso');
 
+
+INSERT INTO `recursos` (`id`, `nomRec`, `descRec`, `tipRec`, `usoRec`, `cantRec`, `estRec`, `created_at`, `updated_at`) VALUES
+(1, 'Pala', NULL, 0, 1, 20, 1, '2022-11-06 21:24:36', '2022-11-06 21:24:36'),
+(2, 'Guantes', NULL, 1, 1, 40, 1, '2022-11-07 03:09:31', '2022-11-07 03:09:31'),
+(3, 'Hacha', NULL, 0, 1, 10, 1, '2022-11-07 03:11:45', '2022-11-07 03:11:45'),
+(4, 'Fertilizante 100gr', NULL, 1, 0, 30, 1, '2022-11-07 03:17:01', '2022-11-07 03:17:01'),
+(5, 'Rastrillo', NULL, 0, 1, 15, 1, '2022-11-07 03:18:30', '2022-11-07 03:18:30'),
+(6, 'Brotes de arbol', NULL, 1, 0, 200, 1, '2022-11-07 03:20:55', '2022-11-07 03:20:55');

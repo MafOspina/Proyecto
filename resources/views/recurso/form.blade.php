@@ -18,9 +18,9 @@
               <label class="form-label" for="nombre">Nombre</label>
               <div class="input-group input-group-merge">
                 <span id="nombre" class="input-group-text"><i class="bx bx-user"></i></span>
-                <input type="text" class="form-control" id="nombre" name="nombre" value="{{ old('nombre') }}"/>
+                <input type="text" class="form-control" id="nomRec" name="nomRec" value="{{ old('nombre') }}"/>
               </div>
-                <div class="form-text text-danger">{{ $errors->first('nombre') }}</div>
+                <div class="form-text text-danger">{{ $errors->first('nomRec') }}</div>
             </div>
 
 
@@ -28,12 +28,42 @@
               <label class="form-label" for="descripcion">Descripción</label>
               <div class="input-group input-group-merge">
                 <span id="descripcion" class="input-group-text"><i class="bx bx-comment-detail"></i></span>
-                <textarea  class="form-control" name="descripcion" rows="3"> {{ Request::old('descripcion') }}</textarea>
+                <textarea  class="form-control" name="descRec" rows="3"> {{ Request::old('descRec') }}</textarea>
               </div>
-                <div class="form-text text-danger">{{ $errors->first('descripcion') }}</div>
+                <div class="form-text text-danger">{{ $errors->first('descRec') }}</div>
             </div>
 
+            <label class="form-label" for="descripcion">Tipo</label>
+            <select name="tipRec" class="form-select">
+              <option value="">Elija el tipo de recurso</option>
+              <option value="0">Herramienta</option>
+              <option value="1">Insumo</option>
+            </select>
+            <div class="form-text text-danger">{{ $errors->first('tipRec') }}</div>
 
+            <label class="form-label" for="descripcion">Uso</label>
+            <select name="usoRec" class="form-select">
+              <option value="">Elija el uso del recurso</option>
+              <option value="0">Consumible</option>
+              <option value="1">Recurso</option>
+            </select>
+            <div class="form-text text-danger">{{ $errors->first('usoRec') }}</div>
+
+            <div class="mb-3">
+              <label class="form-label" for="descripcion">Cantidad</label>
+              <div class="input-group input-group-merge">
+                <span id="descripcion" class="input-group-text"><i class="bx bxs-grid"></i></span>
+                <input type="number" class="form-control" id="nomRec" name="cantRec" value="{{ old('cantRec') }}"/>
+              </div>
+                <div class="form-text text-danger">{{ $errors->first('cantRec') }}</div>
+            </div>
+
+            <label class="form-label" for="descripcion">Estado</label>
+            <select name="estRec" class="form-select">
+              <option value="1">Activo</option>
+              <option value="0">Inhabilitado</option>
+            </select>
+            <br>
             <button type="submit" class="btn btn-primary">Guardar</button>
         </form>
       </div>

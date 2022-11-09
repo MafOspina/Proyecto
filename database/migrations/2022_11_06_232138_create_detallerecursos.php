@@ -15,9 +15,9 @@ return new class extends Migration
     {
         Schema::create('detalle_recursos', function (Blueprint $table) {
             $table->id();
+            $table->foreignId('recurso_id')->constrained();
+            $table->foreignId('evento_id')->constrained();
             $table->string('cantidad', 11);
-            $table->string('tipo_recurso', 11);
-            $table->string('recurso_id',11);
             $table->timestamps();
         });
 

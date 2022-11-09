@@ -4,10 +4,45 @@
 
 @section('content')
 
+      <h1>Asignar Recursos</h1>
 
-      <h1>Detalle Recurso
-        <a type="button" class="btn btn-outline-dark" href="{{ route('detallerecursos.create')}}"><i class="fa fa-plus"></i>Agregar Detalle Recurso</a>
-    </h1>
+      <div class="row">
+            <div class="col-lg-8 mb-4 order-0">
+                <div class="card">
+                  <div class="col-sm-12">
+                    <div class="card-body">
+                    Tipo Recurso
+                    <form method="post" action="{{ route('detallerecursos.store') }}" enctype="multipart/form-data">
+                    @csrf
+                        <input type="hidden" name="evento" value="{{ $evento -> id }}">
+                        <select name="recurso">
+                          @foreach($recursos as $r)
+                            <option value="{{ $r -> id }}">{{ $r -> nomRec }}</option>
+                          @endforeach
+                        </select>
+                        Cantidad
+                        <input type="number" name="cantidad">
+                        <input type="submit" value="Registrar">
+                      </form>
+                    </div>
+                  </div>
+                </div>
+            </div>
+            <div class="col-lg-4 mb-4 order-0">
+                <div class="card">
+                  <div class="col-sm-12">
+                    <div class="card-body">
+                      <h5>Evento # {{ $evento -> id }} </h5>
+                      <p>Recursos asignados:</p>
+                      @foreach($detallerecursos as $a)
+                        <span>{{ $a -> Recurso -> nomRec }}</span>{{ $a -> cantidad }}
+                      @endforeach
+                    </div>
+                  </div>
+                </div>
+            </div>
+      </div>
+      <!--<a type="button" class="btn btn-outline-dark" href="{{ route('detallerecursos.create')}}"><i class="fa fa-plus"></i>Agregar Detalle Recurso</a>
     @if ($message = Session::get('success'))
         <div class="alert alert-success">
             <p>{{ $message }}</p>
@@ -52,7 +87,7 @@
           @endforeach
         </tbody>
       </table>
-    </div>
+    </div>-->
 
 
 @endsection
