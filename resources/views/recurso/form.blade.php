@@ -38,6 +38,8 @@
               <option value="">Elija el tipo de recurso</option>
               <option value="0">Herramienta</option>
               <option value="1">Insumo</option>
+              <option value="2">Infraestructura</option>
+              <option value="3">Tecnología</option>
             </select>
             <div class="form-text text-danger">{{ $errors->first('tipRec') }}</div>
 

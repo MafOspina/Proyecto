@@ -34,60 +34,28 @@
                     <div class="card-body">
                       <h5>Evento # {{ $evento -> id }} </h5>
                       <p>Recursos asignados:</p>
-                      @foreach($detallerecursos as $a)
-                        <span>{{ $a -> Recurso -> nomRec }}</span>{{ $a -> cantidad }}
+                      <h5>{{ $herramienta != "" ? 'Herramientas' : ' ' }}</h5>
+                      @foreach($herramienta as $h)
+                        <b>{{ $h -> nomRec }}</b><span>{{ $h -> cantidad }}</span><br>
                       @endforeach
+                      <h5>Insumos:</h5>
+                      @foreach($insumo as $i)
+                        <b>{{ $i -> nomRec }}</b><span>{{ $i -> cantidad }}</span><br>
+                      @endforeach
+                      <h5>Infraestructura:</h5>
+                      @foreach($infra as $in)
+                        <b>{{ $in -> nomRec }}</b><span>{{ $in -> cantidad }}</span><br>
+                      @endforeach
+                      <h5>Tecnologia:</h5>
+                      @foreach($tec as $t)
+                        <b>{{ $t -> nomRec }}</b><span>{{ $t -> cantidad }}</span><br>
+                      @endforeach
+                      <!--@foreach($detallerecursos as $a)
+                          <span>{{ $a -> Recurso -> nomRec }}</span>{{ $a -> cantidad }}
+                      @endforeach-->
                     </div>
                   </div>
                 </div>
             </div>
       </div>
-      <!--<a type="button" class="btn btn-outline-dark" href="{{ route('detallerecursos.create')}}"><i class="fa fa-plus"></i>Agregar Detalle Recurso</a>
-    @if ($message = Session::get('success'))
-        <div class="alert alert-success">
-            <p>{{ $message }}</p>
-        </div>
-    @endif
-
-    <hr class="my-5">
-    <div class="card">
-    <div class="table-responsive">
-      <table class="table table-hover table-striped">
-        <thead>
-          <tr>
-            <th>Id</th>
-            <th>Cantidad</th>
-            <th>Tipo Recurso</th>
-            <th>Id Recurso</th>
-          </tr>
-        </thead>
-        <tbody>
-          @foreach ($detallerecursos as $detallerecurso)
-
-          <tr >
-              <td>{{ $detallerecurso -> id }}</td>
-              <td>{{ $detallerecurso -> cantidad }}</td>
-              <td>{{ $detallerecurso -> tipo_recurso }}</td>
-              <td>{{ $detallerecurso -> recurso_id }}</td>
-              <td>
-                <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
-                  <a role="button" class="btn btn-outline-warning btn-sm" href="{{ route('detallerecursos.edit', $detallerecurso) }}"
-                      onclick="return confirm('Estás seguro que quieres editar este detalle recurso?');">
-                      <i class="bi bi-pencil"></i></a>
-
-
-                  <form action="{{ route('detallerecursos.destroy', $detallerecurso) }}" method="POST">
-                      @csrf
-                      @method('DELETE')
-                      <button class="btn btn-outline-danger btn-sm" type="submit" onclick="return confirm('Estás seguro que quieres eliminar este detalle recurso?');"><i class="bi bi-trash"></i></button>
-                  </form>
-                </div>
-              </td>
-          </tr>
-          @endforeach
-        </tbody>
-      </table>
-    </div>-->
-
-
 @endsection

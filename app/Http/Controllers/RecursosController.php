@@ -11,7 +11,7 @@ class RecursosController extends Controller
 {
     public function index()
     {
-        $recursos = Recurso::all();
+        $recursos = Recurso::orderby("nomRec","asc")->get();
 
         return view('recurso.list') -> with('recursos', $recursos);
     }

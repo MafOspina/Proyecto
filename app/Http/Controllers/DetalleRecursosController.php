@@ -10,34 +10,16 @@ use App\Models\Recurso;
 
 class DetalleRecursosController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        $detallerecursos = DetalleRecurso::all();
-
-        return view('detallerecurso.list') -> with('detallerecursos', $detallerecursos);
+    
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function create()
     {
         return view('detallerecurso.form');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
     public function store(Request $request)
     {
            $request->validate([
@@ -53,39 +35,27 @@ class DetalleRecursosController extends Controller
         return redirect()->route('detallerecursos.show',$request -> evento) ->  with('success','Detalle Recurso creado con éxito');
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\DetalleRecurso  $detallerecurso
-     * @return \Illuminate\Http\Response
-     */
     public function show($id)
     {
         $detallerecursos = DetalleRecurso::where('evento_id','=',$id)->get();
         $id = Evento::find($id);
         $recursos = Recurso::all();
 
-        return view('detallerecurso.list')->with('evento', $id)-> with('detallerecursos', $detallerecursos)->with('recursos',$recursos);
+        // Consultas por tipo
+        $herramienta = DetalleRecurso::where('evento_id','=',$id)->join('recursos','detalle_recursos.recurso_id','=','recursos.id')->where('tipRec','=',0)->get();
+        $insumo = DetalleRecurso::where('evento_id','=',$id)->join('recursos','detalle_recursos.recurso_id','=','recursos.id')->where('tipRec','=',1)->get();
+        $infra = DetalleRecurso::where('evento_id','=',$id)->join('recursos','detalle_recursos.recurso_id','=','recursos.id')->where('tipRec','=',2)->get();
+        $tecnologia = DetalleRecurso::where('evento_id','=',$id)->join('recursos','detalle_recursos.recurso_id','=','recursos.id')->where('tipRec','=',3)->get();
+
+        return view('detallerecurso.list')->with('evento', $id)-> with('detallerecursos', $detallerecursos)->
+                with('recursos',$recursos)->with('herramienta',$herramienta)->with('insumo',$insumo)->with('infra', $infra)->with('tec',$tecnologia);
     }
 
-    /**
-     * Show the form for editing the specified resource.sx
-     *
-     * @param  \App\Models\DetalleRecurso  $detallerecurso
-     * @return \Illuminate\Http\Response
-     */
     public function edit(DetalleRecurso $detallerecurso)
     {
         return view('detallerecurso.edit', compact('detallerecurso'));
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\DetalleRecurso  $detallerecurso
-     * @return \Illuminate\Http\Response
-     */
     public function update(Request $request, DetalleRecurso $detallerecurso)
     {
         $request->validate([
@@ -100,12 +70,6 @@ class DetalleRecursosController extends Controller
 
     }
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\DetalleRecurso  $detallerecursos
-     * @return \Illuminate\Http\Response
-     */
     public function destroy(DetalleRecurso $detallerecurso)
     {
         $detallerecurso->delete();

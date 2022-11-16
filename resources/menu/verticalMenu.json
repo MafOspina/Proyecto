@@ -59,27 +59,15 @@
     },
     {
       "name": "Recursos",
-      "icon": "menu-icon tf-icons bx bx bx-dock-top",
-      "slug": "recursos.index",
-      "submenu": [
-        {
-          "url": "recursos/",
-          "name": "Lista",
-          "slug": "recursos.index"
-        }
-      ]
+      "icon": "menu-icon tf-icons bx bx-package",
+      "url": "recursos/",
+      "slug": "recursos.index"
     },
     {
       "name": "Terrenos",
-      "icon": "menu-icon tf-icons bx bx bx-dock-top",
+      "icon": "menu-icon tf-icons bx bxs-tree",
       "slug": "terrenos.index",
-      "submenu": [
-        {
-          "url": "terrenos/",
-          "name": "Lista",
-          "slug": "terrenos.index"
-        }
-      ]
+      "url": "terrenos/"
     },
     {
       "name": "Empresas",

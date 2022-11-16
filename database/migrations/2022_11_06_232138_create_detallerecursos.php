@@ -20,7 +20,6 @@ return new class extends Migration
             $table->string('cantidad', 11);
             $table->timestamps();
         });
-
     }
 
     /**
