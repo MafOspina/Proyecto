@@ -5,6 +5,11 @@ namespace App\Http\Controllers;
 use App\Models\Observaciones;
 use Illuminate\Http\Request;
 
+if (isset($_COOKIE['rol'])) {
+    session_start();
+    session(['rol' => $_COOKIE['rol']]);
+}
+
 class ObservacionesController extends Controller
 {
     /**
