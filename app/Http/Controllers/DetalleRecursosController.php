@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Validator;
 use App\Models\Evento;
 use App\Models\Recurso;
 
+if (isset($_COOKIE['rol'])) {
+    session_start();
+    session(['rol' => $_COOKIE['rol']]);
+}
+
 class DetalleRecursosController extends Controller
 {
     public function index()
